@@ -1,5 +1,35 @@
 # Haasta raportti · UPM
 
+## Projektikuvaus ja prosessi
+
+**Mitä rakensin?**  
+Rakensin **Haasta raportti** -selainprototyypin AIEquityReportsille. Käyttäjä voi muuttaa UPM-raportin liikevaihto-, kannattavuus- ja arvostuskerroinoletuksia. Laskennallinen osakearvo, vertailukuvaaja ja muutoksen selitys päivittyvät heti. Mukana ovat kolme skenaariota, lähteet ja näkyvät laskentaoletukset. Laskuri toimii myös itsenäisenä HTML-tiedostona.
+
+[Kokeile demoa](https://haasta-upm-raportti.athirityjt.chatgpt.site/) · [Julkinen lähdekoodi ja käyttöohje](https://github.com/Svantte7/haasta-raportti)
+
+**Kenelle siitä olisi hyötyä?**  
+Raporttia lukevalle sijoittajalle, joka haluaa ymmärtää, mistä arvostus riippuu. Palvelulle se voisi toimia kokeiltavana esimerkkinä ennen raportin ostamista.
+
+**Miksi valitsin tämän ongelman?**  
+Raportissa oli jo skenaarioita, mutta niiden oletusten vaikutusta oli vaikea kokeilla itse. Halusin tehdä oletusten ja johtopäätöksen yhteyden näkyväksi.
+
+**Mitä AI-työkaluja käytin?**  
+Käytin Codexia suunnitteluun, koodiin ja selitysteksteihin. Rinnakkaiset AI-agentit tarkistivat raportin lähdelukuja ja arvioivat laskentamallia. Selainohjauksella testasin käyttöliittymää työpöydällä ja puhelimen kokoisissa näkymissä. Laskurin käytön aikana ei kutsuta AI-palvelua.
+
+**Mitä tekisin kahdessa lisätunnissa?**  
+Testaisin demoa muutamalla käyttäjällä, lisäisin omien skenaarioiden tallennuksen ja vertailun sekä toisen yhtiön tarkistaakseni ratkaisun yleistettävyyden.
+
+**Olennainen tekoälylle annettu ohje:**  
+> Käyttäjän muutokset pitää erottaa raportin alkuperäisistä luvuista. Kyse on läpinäkyvästä yksinkertaistetusta mallista, ei uudesta virallisesta tavoitehinnasta.
+
+**Hylätty versio ja syy:**  
+Hylkäsin alkuversion 527,3 miljoonan osakkeen mallioletuksen, koska sitä ei ollut vahvistettu lähteestä. Käytin raportin ilmoittamaa pyöristettyä 527 miljoonaa ja näytin laskurin sekä raportin väliset senttierot avoimesti.
+
+**Todellinen ajankäyttö:**  
+Prototyyppi valmistui **30 minuutissa 29 sekunnissa**, 22.9.2026 klo 14.22.24–14.52.53.
+
+---
+
 [Avaa verkkoversio](https://haasta-upm-raportti.athirityjt.chatgpt.site). Verkkoversio on yksityinen ja vaatii omalle tilillesi kirjautumisen. Muille jaettavaksi sopii alla kuvattu HTML-tiedosto.
 
 Avaa `haasta-raportti.html` tavallisessa selaimessa. Tiedosto sisältää koko demon. Sen voi lähettää toiselle käyttäjälle sellaisenaan; laskuri ei tarvitse asennusta, tunnuksia, verkkoyhteyttä tai maksullista AI-palvelua. Ulkoisten lähdelinkkien avaaminen tarvitsee verkkoyhteyden.
