@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#19382f">
+  <meta name="description" content="Haasta UPM-raportin oletukset. Läpinäkyvä, paikallisesti toimiva skenaariolaskuri.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2317372e'/%3E%3Cpath d='M8 24V17H12V24ZM14 24V11H18V24ZM20 24V6H24V24Z' fill='%23d3ed9a'/%3E%3C/svg%3E">
+  <title>Haasta raportti · UPM · AI Equity Reports</title>
+  <style>
+    :root{--ink:#17372e;--muted:#65716b;--paper:#f6f7f3;--white:#fff;--line:#dfe5de;--green:#215c46;--green-light:#edf4ed;--lime:#d3ed9a;--negative:#9c493a;--negative-bg:#fbefeb;--gold:#9a743a;--font:"Segoe UI",Arial,sans-serif}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}button,input{font:inherit}button,a,input,summary{-webkit-tap-highlight-color:transparent}button,a,summary{touch-action:manipulation}button{cursor:pointer}a{color:inherit;text-underline-offset:3px}button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #8baf38;outline-offset:5px}button:disabled{cursor:default;opacity:.5}h1,h2,h3,p{margin:0}button{color:inherit}svg{display:block}table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}.numbers,output,input,.metric,.result-number{font-variant-numeric:tabular-nums}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.skip-link{position:fixed;left:16px;top:-100px;z-index:10;background:white;padding:10px}.skip-link:focus{top:12px}
+    .topbar{background:var(--ink);color:white}.nav{max-width:1240px;margin:auto;padding:16px 38px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:12px;text-decoration:none}.brand-mark{width:30px;height:34px;background:var(--lime);clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,45% 50%)}.brand-name{font-family:Georgia,serif;font-size:23px;line-height:1}.brand-caption{display:block;font:9px var(--font);letter-spacing:1.8px;margin-top:5px;color:#d5e2d7}.nav-right{display:flex;align-items:center;gap:26px;font-size:12px}.demo-tag{border:1px solid #6c8578;border-radius:4px;padding:4px 9px;letter-spacing:1px;font-size:12px;text-transform:uppercase}.nav-right a{text-decoration:none;color:#e0e8e1}.nav-right a:hover{text-decoration:underline}
+    main{max-width:1240px;margin:auto;padding:27px 38px 40px}.breadcrumb{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:10px;margin-bottom:16px}.breadcrumb a{text-decoration:none}.breadcrumb a:hover{text-decoration:underline}.breadcrumb span:last-child{color:var(--ink)}.hero{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:21px}.eyebrow{font-size:12px;font-weight:700;letter-spacing:1.7px;text-transform:uppercase;color:var(--green);margin-bottom:7px}h1{font:normal 42px/1.1 Georgia,"Times New Roman",serif;letter-spacing:-1.5px;margin-bottom:12px}.intro{color:var(--muted);max-width:620px;font-size:15px}.report-date{font-size:12px;white-space:nowrap;text-align:right;padding-bottom:4px}.report-date strong{display:block;font-size:14px;font-weight:600;margin-bottom:2px}.report-date span{color:var(--muted)}
+    .company-strip{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 22px;background:var(--white);border:1px solid var(--line);border-radius:8px;margin-bottom:20px}.company{display:flex;align-items:center;gap:14px}.company-monogram{height:43px;width:43px;background:var(--green-light);border:1px solid #dce8d9;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700;letter-spacing:-.4px}.company-name{font-weight:650;font-size:16px}.company-meta{font-size:12px;color:var(--muted);margin-top:1px}.reference-price{display:flex;gap:23px;align-items:center}.reference-price span{display:block;font-size:12px;color:var(--muted)}.reference-price strong{font-size:18px;font-weight:600;white-space:nowrap}.reference-price small{display:block;font-size:12px;color:var(--muted)}.reference-divider{height:34px;width:1px;background:var(--line)}
+    .workspace{display:grid;grid-template-columns:minmax(320px,.86fr) minmax(420px,1.14fr);gap:20px;align-items:stretch}.panel{background:var(--white);border:1px solid var(--line);border-radius:10px;overflow:hidden}.controls{padding:25px 25px 20px}.section-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px}.section-number{font-size:12px;color:var(--muted);border:1px solid var(--line);width:23px;height:23px;border-radius:50%;display:inline-grid;place-items:center;margin-right:8px;vertical-align:2px}h2{font-size:17px;letter-spacing:-.25px;font-weight:650}.section-intro{font-size:14px;color:var(--muted);margin:0 0 18px}.scenario-switch{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;background:var(--paper);padding:5px;border-radius:7px;margin-bottom:22px}.scenario-btn{border:1px solid transparent;background:transparent;border-radius:4px;padding:8px 5px;font-size:14px;font-weight:600}.scenario-btn:hover{background:#e5ebe2}.scenario-btn[aria-pressed=true]{background:var(--ink);color:#fff;box-shadow:0 2px 4px #143b2512}.scenario-line{display:flex;align-items:center;justify-content:space-between;margin-bottom:19px;gap:10px}.state-label{font-size:12px;color:var(--green);font-weight:650;display:flex;align-items:center;gap:6px}.state-dot{height:6px;width:6px;border-radius:50%;background:currentColor}.text-button{border:0;padding:4px 0;background:transparent;font-size:12px;text-decoration:underline;text-underline-offset:3px;color:var(--muted)}.text-button:hover{color:var(--ink)}
+    .control{padding:0 0 20px;margin-bottom:19px;border-bottom:1px solid #edf0ea}.control:last-of-type{margin-bottom:16px}.control-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:3px}.control-heading label{font-size:14px;font-weight:650}.value-field{display:flex;align-items:center;justify-content:flex-end;gap:5px;padding:3px 7px;background:#f6f8f4;border:1px solid #dbe3d8;border-radius:5px;min-height:35px}.value-field:focus-within{border-color:var(--green)}.value-field input{width:68px;padding:0;border:0;background:transparent;text-align:right;font-size:17px;font-weight:650;color:var(--ink);outline:none;appearance:textfield;-moz-appearance:textfield}.value-field input::-webkit-inner-spin-button,.value-field input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}.value-field input:focus-visible{outline:2px solid #8baf38;outline-offset:3px}.value-field .unit{font-size:12px;font-weight:500;color:var(--muted)}.original{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--muted);min-height:19px;gap:8px}.original .difference{font-weight:600;color:var(--green)}.original .difference.lower{color:var(--negative)}.range-wrap{position:relative;margin-top:12px;height:27px;display:flex;align-items:center}.range-wrap:after{position:absolute;content:"";left:var(--original-pos);top:20px;width:1px;height:5px;background:#89998c;pointer-events:none}input[type=range]{appearance:none;-webkit-appearance:none;width:100%;height:5px;margin:0;background:linear-gradient(to right,var(--green) 0%,var(--green) var(--fill),#e5eae1 var(--fill),#e5eae1 100%);border-radius:9px;cursor:pointer}input[type=range]::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:19px;height:19px;border:3px solid #fff;border-radius:50%;background:var(--green);box-shadow:0 0 0 1px var(--green),0 2px 4px #183d2520}input[type=range]::-moz-range-thumb{width:14px;height:14px;border:3px solid #fff;border-radius:50%;background:var(--green);box-shadow:0 0 0 1px var(--green)}.range-labels{display:flex;justify-content:space-between;font-size:12px;color:#758075}.control-hint{font-size:12px;line-height:1.5;color:var(--muted);margin-top:7px}.input-error{font-size:12px;color:var(--negative);min-height:0}.input-error:not(:empty){margin:5px 0}.control-bottom{font-size:12px;color:var(--muted);line-height:1.65}.control-bottom strong{color:var(--ink);font-weight:550}.control-bottom a{font-size:12px}
+    .result{display:flex;flex-direction:column}.result-summary{background:var(--green-light);padding:24px 29px 22px;border-bottom:1px solid #dce6d7}.result-heading{display:flex;align-items:center;justify-content:space-between;gap:10px}.live-label{font-size:12px;letter-spacing:.6px;text-transform:uppercase;color:var(--green);display:flex;align-items:center;gap:6px}.result-main{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:15px 0 12px}.result-number{font-size:57px;line-height:1.05;font-weight:500;letter-spacing:-2.5px;white-space:nowrap}.result-number .euro{font-size:28px;margin-left:5px;letter-spacing:-1px}.valuation-caption{font-size:12px;color:var(--muted);margin-top:8px}.upside-box{text-align:right}.upside{display:inline-flex;align-items:center;gap:5px;font-size:20px;font-weight:650;color:var(--green);white-space:nowrap}.upside.negative{color:var(--negative)}.upside-label{font-size:12px;line-height:1.45;max-width:135px;color:var(--muted);margin-top:2px}.model-note{font-size:12px;color:#536353;line-height:1.6}.model-note a{font-weight:600}.chart-section{padding:23px 29px 16px;flex:1}.chart-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;font-size:12px;font-weight:600}.chart-unit{font-weight:400;font-size:12px;color:var(--muted)}.chart-legend{display:flex;justify-content:space-between;gap:10px;margin-top:9px;color:var(--muted);font-size:12px}.line-key{display:inline-block;width:15px;border-top:1px dashed var(--gold);vertical-align:3px;margin-right:5px}.chart-key{display:inline-block;width:7px;height:7px;background:#aebfac;margin-right:5px;border-radius:1px}.chart{width:100%;height:204px;overflow:visible}.chart text{font-family:var(--font);font-size:12px;fill:var(--ink)}.chart .axis-text{font-size:12px;fill:#758075}.chart .source-bar{fill:#b8c9b1}.chart .custom-bar{fill:var(--green)}.chart .guide{stroke:#e9ede7;stroke-width:1}.chart .price-line{stroke:var(--gold);stroke-width:1.5;stroke-dasharray:4 4}.chart .bar-label{font-weight:600}.result-foot{font-size:12px;line-height:1.6;color:var(--muted);padding:13px 29px;border-top:1px solid #edf0ea;background:#fdfefb}
+    .explanation{margin-top:20px;padding:24px 26px;display:grid;grid-template-columns:1fr 1.15fr;gap:35px}.explanation h2{margin-bottom:10px}.explanation-lead{font-size:13px;line-height:1.65;color:var(--muted)}.explanation-lead strong{color:var(--ink);font-weight:600}.decomposition{display:grid;gap:10px;padding-top:2px}.effect-row{display:grid;grid-template-columns:110px 1fr 76px;gap:12px;align-items:center;font-size:12px}.effect-value{text-align:right;white-space:nowrap;font-weight:600}.effect-track{position:relative;height:8px;border-radius:3px;background:#f0f3ec}.effect-track:after{content:"";position:absolute;left:50%;width:1px;top:-3px;bottom:-3px;background:#d6ded2}.effect-bar{position:absolute;top:0;height:8px;border-radius:2px;background:#4d795b;min-width:0}.effect-bar.negative{background:#b37e70}.effect-total{display:flex;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding-top:10px;font-size:12px;margin-top:2px}.effect-total strong{font-weight:650}.effect-foot{font-size:12px;color:var(--muted);margin-top:12px;line-height:1.6}
+    .transparency{margin-top:26px}.transparency>h2{font-size:16px;margin-bottom:12px}.disclosure{border-top:1px solid var(--line)}.disclosure:last-child{border-bottom:1px solid var(--line)}summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 0;font-size:13px;font-weight:600}summary::-webkit-details-marker{display:none}summary:after{content:"+";font-size:21px;line-height:1;font-weight:400;color:var(--muted)}details[open]>summary:after{content:"−"}.summary-meta{font-size:12px;font-weight:400;color:var(--muted);margin-left:auto}details .details-body{padding:0 0 21px;font-size:12px;color:#58655b;max-width:950px;line-height:1.75}.details-body p+p{margin-top:10px}.details-body strong{color:var(--ink);font-weight:600}.details-body a{color:var(--green)}.table-wrap{overflow-x:auto;margin:13px 0 11px}.data-table{font-size:12px;white-space:nowrap}.data-table th{text-align:right;font-weight:600;background:#edf2e9;padding:8px 12px;color:var(--ink)}.data-table th:first-child,.data-table td:first-child{text-align:left}.data-table td{padding:8px 12px;border-bottom:1px solid var(--line);text-align:right}.formula{display:block;padding:14px 16px;background:#eaf0e6;border-radius:5px;font-size:14px;color:var(--ink);margin-bottom:13px;font-family:var(--font)}.calculation{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:12px 0 16px}.calc-item{border-left:2px solid #c8d8bc;padding-left:12px}.calc-item span{display:block;font-size:12px}.calc-item strong{font-size:16px}.sources-list{padding-left:18px}.sources-list li{padding:3px 0}.footer{margin-top:27px;display:flex;justify-content:space-between;align-items:flex-start;gap:30px;font-size:12px;line-height:1.7;color:var(--muted)}.footer p:first-child{max-width:690px}.footer-brand{white-space:nowrap;text-transform:uppercase;letter-spacing:1.3px}.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--ink);color:white;padding:10px 18px;border-radius:6px;box-shadow:0 4px 25px #17372e20;font-size:12px;z-index:10}.toast[hidden]{display:none}.noscript{padding:20px;background:#fbefeb;color:#763b31;margin:20px;border-radius:6px}
+    .mobile-result{display:none}
+    @media(max-width:760px){html{scroll-padding-bottom:95px}body{padding-bottom:76px}.mobile-result{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:8;align-items:center;justify-content:space-between;gap:15px;padding:11px 23px calc(11px + env(safe-area-inset-bottom));background:var(--ink);color:white;box-shadow:0 -3px 18px #17372e1a;text-decoration:none}.mobile-result small{display:block;font-size:12px;color:#d5e2d7}.mobile-result strong{font-size:23px;font-weight:600;letter-spacing:-.5px}.mobile-result .mobile-change{text-align:right;font-size:15px;font-weight:600}.mobile-result .mobile-change small{font-size:12px;font-weight:400}.mobile-result:focus-visible{outline-offset:-5px}}
+    @media(min-width:1400px){main{padding-top:35px}.hero{margin-bottom:30px}.company-strip{margin-bottom:23px}}
+    @media(max-width:1000px){main{padding:23px 24px 30px}.nav{padding:19px 24px}.workspace{grid-template-columns:minmax(290px,.9fr) minmax(350px,1.1fr);gap:16px}.controls{padding:22px 20px}.result-summary{padding:23px}.chart-section{padding:23px 23px 16px}.result-foot{padding:13px 23px}.result-number{font-size:49px}.upside{font-size:18px}.explanation{gap:24px}.effect-row{grid-template-columns:95px 1fr 69px;gap:8px}.nav-right{gap:15px}}
+    @media(max-width:760px){main{padding:22px 19px 28px}.nav{padding:17px 19px}.nav-right a{display:none}.hero{align-items:flex-start;gap:18px}.report-date{display:none}h1{font-size:42px}.intro{font-size:14px}.company-strip{padding:16px}.reference-price{gap:15px}.reference-price>div:last-child,.reference-divider{display:none}.workspace{grid-template-columns:1fr}.controls{padding:23px}.result-summary{padding:24px}.chart-section{padding:23px 24px 18px}.result-number{font-size:58px}.upside{font-size:22px}.result-main{margin:19px 0 14px}.explanation{grid-template-columns:1fr;gap:21px;padding:23px}.effect-row{grid-template-columns:112px 1fr 78px}.summary-meta{display:none}.footer{display:block}.footer-brand{margin-top:14px}.calculation{grid-template-columns:1fr}.control{padding-bottom:18px;margin-bottom:18px}.breadcrumb{margin-bottom:21px}.company-meta{font-size:12px}}
+    @media(max-width:380px){main{padding:20px 13px}.nav{padding:16px 13px}.brand-name{font-size:21px}.brand-mark{width:25px;height:29px}.demo-tag{font-size:9px}.result-summary,.chart-section{padding-left:19px;padding-right:19px}.result-number{font-size:50px}.upside{font-size:19px}.company-name{font-size:14px}.company-monogram{width:35px;height:35px;font-size:12px}.reference-price strong{font-size:16px}.explanation{padding:20px}.effect-row{grid-template-columns:100px 1fr 74px;gap:7px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+    @media print{body{background:white;padding-bottom:0}.nav,.breadcrumb,.skip-link,.text-button,.scenario-switch,.range-wrap,.range-labels,.mobile-result{display:none}main{padding:0;max-width:none}.hero{margin-top:15px}h1{font-size:32px}.workspace{grid-template-columns:1fr 1.2fr}.panel,.company-strip{break-inside:avoid}.transparency{break-before:page}.footer{font-size:9px}.result-summary{background:#edf4ed!important;print-color-adjust:exact}.chart{height:190px}.explanation{break-inside:avoid}}
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#scenario">Siirry laskuriin</a>
+<header class="topbar">
+  <nav class="nav" aria-label="Päänavigaatio">
+    <a class="brand" href="https://www.aiequityreports.com/" target="_blank" rel="noopener noreferrer" aria-label="Valuatum AI Equity Reports, avautuu uuteen välilehteen"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">Valuatum<span class="brand-caption">AI EQUITY REPORTS</span></span></a>
+    <div class="nav-right"><a href="https://www.aiequityreports.com/reports/upm-equity-report.html" target="_blank" rel="noopener noreferrer">Avaa alkuperäinen raportti ↗</a><span class="demo-tag">Prototyyppi</span></div>
+  </nav>
+</header>
+<noscript><p class="noscript">Laskuri tarvitsee JavaScriptin. Salli JavaScript selaimessa, jotta säätimet ja laskennallinen osakearvo toimivat.</p></noscript>
+<main>
+  <div class="breadcrumb"><a href="https://www.aiequityreports.com/reports/upm-equity-report.html" target="_blank" rel="noopener noreferrer">UPM-raportti ↗</a><span aria-hidden="true">/</span><span>Haasta raportti</span></div>
+  <section class="hero" aria-labelledby="page-title">
+    <div><h1 id="page-title">Haasta raportti.</h1><p class="intro">Muuta raportin oletuksia ja näe heti, miten ne vaikuttavat UPM:n laskennalliseen osakearvoon.</p></div>
+    <div class="report-date"><strong>Raportti 1.9.2026</strong><span>Kiinteä lähtötilanne · ei live-kursseja</span></div>
+  </section>
+  <section class="company-strip" aria-label="Yhtiö ja raportin vertailuluvut">
+    <div class="company"><div class="company-monogram" aria-hidden="true">UPM</div><div><p class="company-name">UPM-Kymmene Oyj</p><p class="company-meta">UPM.HE · Helsinki · Metsäteollisuus</p></div></div>
+    <div class="reference-price"><div><span>Kurssi 1.9.2026</span><strong class="numbers">24,06 €</strong></div><div class="reference-divider" aria-hidden="true"></div><div><span>Raportin 12 kk tavoitehinta</span><strong class="numbers">24,70 €</strong></div></div>
+  </section>
+  <div class="workspace" id="scenario">
+    <section class="panel controls" aria-labelledby="controls-title">
+      <div class="section-top"><h2 id="controls-title"><span class="section-number" aria-hidden="true">01</span>Muuta oletuksia</h2></div>
+      <p class="section-intro">Aloita skenaariosta tai säädä oma näkemyksesi.</p>
+      <div class="scenario-switch" role="group" aria-label="Raportin skenaarion oletukset">
+        <button class="scenario-btn" type="button" data-preset="bear" aria-pressed="false">Heikko</button>
+        <button class="scenario-btn" type="button" data-preset="base" aria-pressed="true">Perus</button>
+        <button class="scenario-btn" type="button" data-preset="bull" aria-pressed="false">Vahva</button>
+      </div>
+      <div class="scenario-line"><span class="state-label" id="scenario-label"><span class="state-dot" aria-hidden="true"></span>Perus · raportin oletukset</span><button type="button" class="text-button" id="reset">Palauta perus</button></div>
+      <div class="control">
+        <div class="control-heading"><label for="revenue">Liikevaihto</label><div class="value-field"><input id="revenue-value" type="text" inputmode="decimal" value="10 300" aria-label="Liikevaihto miljoonaa euroa" aria-describedby="revenue-error revenue-hint" autocomplete="off" spellcheck="false"><span class="unit">M€</span></div></div>
+        <div class="original"><span>Raportin perus: 10 300 M€</span><span class="difference" id="revenue-diff">Ei muutosta</span></div>
+        <div class="range-wrap" style="--original-pos:46%"><input id="revenue" type="range" min="8000" max="13000" step="100" value="10300" aria-describedby="revenue-hint" style="--fill:46%"></div>
+        <div class="range-labels" aria-hidden="true"><span>8 000 M€</span><span>13 000 M€</span></div>
+        <p class="input-error" id="revenue-error" aria-live="polite"></p><p class="control-hint" id="revenue-hint">Kuinka paljon yhtiö myy? 1 000 M€ = 1 mrd. €.</p>
+      </div>
+      <div class="control">
+        <div class="control-heading"><label for="margin">EBITDA-kannattavuus</label><div class="value-field"><input id="margin-value" type="text" inputmode="decimal" value="18,4" aria-label="EBITDA-kannattavuus prosenttia" aria-describedby="margin-error margin-hint" autocomplete="off" spellcheck="false"><span class="unit">%</span></div></div>
+        <div class="original"><span>Raportin perus: 18,4 %</span><span class="difference" id="margin-diff">Ei muutosta</span></div>
+        <div class="range-wrap" style="--original-pos:56%"><input id="margin" type="range" min="10" max="25" step="0.1" value="18.4" aria-describedby="margin-hint" style="--fill:56%"></div>
+        <div class="range-labels" aria-hidden="true"><span>10,0 %</span><span>25,0 %</span></div>
+        <p class="input-error" id="margin-error" aria-live="polite"></p><p class="control-hint" id="margin-hint">Kuinka suuri osa myynnistä jää käyttökatteeksi?</p>
+      </div>
+      <div class="control">
+        <div class="control-heading"><label for="multiple">EV/EBITDA-kerroin</label><div class="value-field"><input id="multiple-value" type="text" inputmode="decimal" value="9,4" aria-label="EV/EBITDA-arvostuskerroin" aria-describedby="multiple-error multiple-hint" autocomplete="off" spellcheck="false"><span class="unit">×</span></div></div>
+        <div class="original"><span>Raportin perus: 9,4×</span><span class="difference" id="multiple-diff">Ei muutosta</span></div>
+        <div class="range-wrap" style="--original-pos:55%"><input id="multiple" type="range" min="5" max="13" step="0.1" value="9.4" aria-describedby="multiple-hint" style="--fill:55%"></div>
+        <div class="range-labels" aria-hidden="true"><span>5,0×</span><span>13,0×</span></div>
+        <p class="input-error" id="multiple-error" aria-live="polite"></p><p class="control-hint" id="multiple-hint">Monellako käyttökatteella koko liiketoiminta arvostetaan?</p>
+      </div>
+      <p class="control-bottom"><strong>Sinä muutat vain näitä kolmea oletusta.</strong><br>Nettovelka, muut oikaisut ja osakemäärä pysyvät vakioina. <a href="#assumptions" data-open="assumptions">Katso laskentaoletukset ↓</a></p>
+    </section>
+    <section class="panel result" aria-labelledby="result-title">
+      <div class="result-summary">
+        <div class="result-heading"><h2 id="result-title"><span class="section-number" aria-hidden="true">02</span>Näe vaikutus</h2><span class="live-label"><span class="state-dot" aria-hidden="true"></span>Laskuri</span></div>
+        <div class="result-main"><div><p class="result-number"><span id="valuation">27,81</span><span class="euro">€</span></p><p class="valuation-caption">Laskennallinen arvo / osake</p></div><div class="upside-box"><p class="upside" id="upside">+15,5 %</p><p class="upside-label" id="upside-label">yli raportin päiväyksen kurssin</p></div></div>
+        <p class="model-note" id="rounding-note">Raportin perusskenaario: 27,77 €. <a href="#assumptions" data-open="assumptions">Miksi pieni ero?</a></p>
+      </div>
+      <div class="chart-section">
+        <div class="chart-heading"><span>Oma näkemys suhteessa raporttiin</span><span class="chart-unit">€/osake</span></div>
+        <svg id="comparison-chart" class="chart" role="img" aria-labelledby="chart-title chart-description"><title id="chart-title">Laskennallinen osakearvo verrattuna raportin skenaarioihin</title><desc id="chart-description">Raportin heikko 12,93 euroa, perus 27,77 euroa, vahva 37,82 euroa. Mallin tulos 27,81 euroa. Raportin päiväyksen kurssi 24,06 euroa.</desc></svg>
+        <div class="chart-legend"><span><i class="chart-key" aria-hidden="true"></i>Raportin alkuperäiset arvot</span><span><i class="line-key" aria-hidden="true"></i>Kurssi 24,06 €</span></div>
+      </div>
+      <p class="result-foot">Skenaariolaskelma, ei uusi tavoitehinta. Raportin 12 kk tavoitehinta on <strong>24,70 €</strong>. Malli ei ennusta osakkeen tulevaa kurssia.</p>
+    </section>
+  </div>
+  <section class="panel explanation" aria-labelledby="explanation-title">
+    <div><h2 id="explanation-title">Mistä muutos johtuu?</h2><p class="explanation-lead" id="explanation-text">Oletukset ovat raportin perusskenaarion tasolla. <strong>Muuta yhtä oletusta</strong>, niin näet sen vaikutuksen euroina osaketta kohden.</p><p class="effect-foot">Vertailu mallin perusarvoon <span id="base-value">27,81 €</span>. Vaikutukset lasketaan järjestyksessä liikevaihto → kannattavuus → kerroin. <a href="#method" data-open="method">Näin selitys lasketaan</a>.</p></div>
+    <div class="decomposition" aria-label="Osakearvon muutoksen erittely">
+      <div class="effect-row"><span>Liikevaihto</span><span class="effect-track" aria-hidden="true"><span class="effect-bar" id="effect-revenue-bar"></span></span><span class="effect-value numbers" id="effect-revenue">0,00 €</span></div>
+      <div class="effect-row"><span>Kannattavuus</span><span class="effect-track" aria-hidden="true"><span class="effect-bar" id="effect-margin-bar"></span></span><span class="effect-value numbers" id="effect-margin">0,00 €</span></div>
+      <div class="effect-row"><span>Arvostuskerroin</span><span class="effect-track" aria-hidden="true"><span class="effect-bar" id="effect-multiple-bar"></span></span><span class="effect-value numbers" id="effect-multiple">0,00 €</span></div>
+      <div class="effect-total"><span>Muutos perusarvosta</span><strong class="numbers" id="effect-total">0,00 €</strong></div>
+    </div>
+  </section>
+  <section class="transparency" aria-labelledby="transparency-title">
+    <h2 id="transparency-title">Avaa luvut. Tarkista oletukset.</h2>
+    <details class="disclosure" id="assumptions"><summary>Laskentakaava ja kiinteät oletukset<span class="summary-meta">Läpinäkyvä arvonmääritys</span></summary><div class="details-body">
+      <div class="formula">Osakearvo = (liikevaihto × EBITDA-marginaali × EV/EBITDA − nettovelka − muut oikaisut) / osakemäärä</div>
+      <p>Liikevaihto, EBITDA, yritysarvo ja oman pääoman arvo ovat miljoonia euroja. Marginaali muutetaan laskennassa desimaaliksi, esimerkiksi 18,4 % = 0,184. Osakemäärä on miljoonia osakkeita. Tulos on euroa osakkeelta.</p>
+      <div class="calculation"><div class="calc-item"><span>Nettovelka</span><strong>2 741 M€</strong></div><div class="calc-item"><span>Muut vähennettävät oikaisut</span><strong>418 M€</strong></div><div class="calc-item"><span>Raportin pyöristetty osakemäärä</span><strong>527 milj.</strong></div></div>
+      <p id="shares-note"><strong>Osakemäärä:</strong> demossa käytetään raportin sivulla 55 ilmoitettua, pyöristettyä 527 miljoonaa osaketta. Täsmällistä laimennettua osakemäärää ei ole vahvistettu. Osakemäärän sekä marginaalin ja kertoimen pyöristykset voivat tuottaa senttien eroja raportin skenaarioarvoihin.</p>
+      <p><strong>Pyöristykset näkyvät tuloksessa.</strong> Raportin perusskenaarion liikevaihto on 10 300 M€, EBITDA 1 899 M€, marginaali 18,4 %, kerroin 9,4× ja yritysarvo 17 800 M€. Näkyvillä pyöristetyillä säätimillä saadaan EBITDA 1 895,2 M€ ja yritysarvo 17 814,88 M€. Siksi mallin perusarvo on <strong id="base-value-detail">27,81 €</strong>, kun raportin perusskenaario on <strong>27,77 €</strong>. Malli ei käytä piilotettuja oikaisuja arvojen pakottamiseksi samoiksi.</p>
+      <p><strong>Kiinteä velka on yksinkertaistus.</strong> Velka, muut oikaisut ja osakemäärä eivät muutu skenaarion mukana. Malli ei sisällä erillistä kassavirtalaskentaa, diskonttausta, osinkoja, valuuttamuutoksia tai todennäköisyyspainoja. Säädinrajat ovat demon käyttöliittymävalintoja, eivät ennustevälejä. Syötetyt luvut pyöristetään säätimien tarkkuuteen: liikevaihto 100 M€, marginaali 0,1 prosenttiyksikköä ja kerroin 0,1×.</p>
+      <div class="table-wrap"><table class="data-table"><caption class="sr-only">Nykyisen skenaarion laskentavaiheet</caption><thead><tr><th scope="col">Laskentavaihe</th><th scope="col">Oma laskelma</th></tr></thead><tbody><tr><td>EBITDA = liikevaihto × marginaali</td><td id="calc-ebitda">1 895,20 M€</td></tr><tr><td>Yritysarvo (EV) = EBITDA × kerroin</td><td id="calc-ev">17 814,88 M€</td></tr><tr><td>Oman pääoman arvo = EV − 2 741 − 418</td><td id="calc-equity">14 655,88 M€</td></tr><tr><td>Osakearvo = oman pääoman arvo / 527</td><td id="calc-value">27,81 €</td></tr></tbody></table></div>
+    </div></details>
+    <details class="disclosure" id="sources"><summary>Lähteet ja raportin alkuperäiset luvut<span class="summary-meta">UPM · 1.9.2026</span></summary><div class="details-body">
+      <p>Lähtötiedot ovat AI Equity Reportsin <strong>1.9.2026 päivätystä UPM-raportista</strong>. Raportin tiedot ja ennusteet eivät ole tässä demossa itsenäisesti varmennettuja markkinatietoja. Raportin päiväyksen kurssi on 24,06 € ja 12 kuukauden tavoitehinta 24,70 €.</p>
+      <ol class="sources-list"><li><a href="https://www.aiequityreports.com/reports/upm-equity-report.html" target="_blank" rel="noopener noreferrer">UPM:n julkinen raporttisivu ↗</a> — Reverse Valuation -taulukko, skenaariot ja tavoitehinnan laskentasilta.</li><li><a href="https://files.aiequityreports.com/reports/pdfs/UPMKymmeneOyj_01092026.pdf" target="_blank" rel="noopener noreferrer">Koko raportti, maksuton PDF ↗</a> — nettovelka ja oikaisut s. 36, tavoitehinta s. 44, skenaariot s. 48 ja osakemäärä s. 55. Sivunumerot viittaavat PDF:n sivujärjestykseen.</li></ol>
+      <div class="table-wrap"><table class="data-table"><caption class="sr-only">Raportin alkuperäiset skenaariot, rahamäärät miljoonia euroja paitsi osakearvo</caption><thead><tr><th scope="col">Raportin luku</th><th scope="col">Heikko</th><th scope="col">Perus</th><th scope="col">Vahva</th></tr></thead><tbody><tr><td>Liikevaihto, M€</td><td>9 500</td><td>10 300</td><td>11 000</td></tr><tr><td>EBITDA, M€</td><td>1 425</td><td>1 899</td><td>2 310</td></tr><tr><td>EBITDA-marginaali</td><td>15,0 %</td><td>18,4 %</td><td>21,0 %</td></tr><tr><td>EV/EBITDA</td><td>7,0×</td><td>9,4×</td><td>10,0×</td></tr><tr><td>Yritysarvo, M€</td><td>9 975</td><td>17 800</td><td>23 100</td></tr><tr><td>Oman pääoman arvo, M€</td><td>6 816</td><td>14 641</td><td>19 941</td></tr><tr><td>Raportin osakearvo</td><td>12,93 €</td><td>27,77 €</td><td>37,82 €</td></tr><tr><td>Demon osakearvo samoilla säätimillä</td><td id="source-bear-model">12,93 €</td><td id="source-base-model">27,81 €</td><td id="source-bull-model">37,82 €</td></tr></tbody></table></div>
+      <p>Heikko ja vahva ovat raportin Bear- ja Bull-skenaariot. <strong>Perusskenaarion 27,77 € ei ole sama asia kuin 12 kk tavoitehinta 24,70 €.</strong> Raportin tavoitehinta perustuu vuosien 2028–2029 segmenttiarvojen diskonttaukseen 12 kuukauden horisonttiin; tämä kolmen säätimen laskuri ei toista sitä. Kuvaajan kolme vaaleaa palkkia näyttävät raportin alkuperäiset osakearvot. Tumma palkki näyttää aina laskurin tuloksen.</p>
+    </div></details>
+    <details class="disclosure" id="method"><summary>Miten selitys syntyy ja mihin AI:ta käytettiin?<span class="summary-meta">Ei AI-yhteyttä laskennan aikana</span></summary><div class="details-body">
+      <p><strong>Selitys tulee laskennasta.</strong> Mallin perus on 10 300 M€, 18,4 % ja 9,4×. Ensin vaihdetaan liikevaihto omaan arvoosi, sitten EBITDA-marginaali ja lopuksi arvostuskerroin. Kunkin vaiheen osakearvon erotus on sen vaikutus. Järjestys vaikuttaa muutoksen jakautumiseen: yhteisvaikutukset sisältyvät myöhempään tekijään. Vaikutukset eivät ole erillisiä syy-seurausennusteita.</p>
+      <p>Laskenta säilyttää täyden tarkkuuden. Selityksen euromäärät muodostetaan senttiin pyöristettyjen välivaiheiden erotuksista, jotta näkyvät vaikutukset summautuvat näkyvään kokonaismuutokseen. Prosenttiero lasketaan pyöristämättömästä osakearvosta.</p>
+      <p><strong>AI auttoi toteutuksessa:</strong> lähdetietojen jäsentämisessä, selitystekstien luonnostelussa, käyttöliittymän ja laskennan rakentamisessa sekä tarkistuksessa. Käyttöliittymän selitykset ovat ennalta laadittuja, laskentatuloksen mukaan muuttuvia tekstejä. Niitä ei generoida reaaliaikaisesti AI:lla.</p>
+      <p><strong>Toimii paikallisesti.</strong> Laskuri ei lähetä syötteitä palvelimelle eikä tarvitse tunnuksia, verkkoyhteyttä tai maksullista AI-palvelua. Ulkoiset lähdelinkit tarvitsevat verkkoyhteyden. Muutokset säilyvät vain tämän avatun sivun muistissa; sivun lataaminen uudelleen palauttaa perusskenaarion.</p>
+    </div></details>
+  </section>
+  <footer class="footer"><p>Itsenäinen käyttöliittymäprototyyppi AIEquityReports.com-palvelua varten. Ei tuotantopalvelu eikä henkilökohtainen sijoitussuositus. Luvut havainnollistavat oletusten vaikutuksia yksinkertaistetussa mallissa.</p><p class="footer-brand">Haasta raportti · UPM / 01</p></footer>
+  <p id="announcer" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+</main>
+<a class="mobile-result" href="#result-title" aria-label="Siirry laskurin tulokseen"><span><small>Laskennallinen arvo / osake</small><strong class="numbers" id="mobile-valuation">27,81 €</strong></span><span class="mobile-change"><span class="numbers" id="mobile-upside">+15,6 %</span><small>vs. 1.9.2026 · Näytä</small></span></a>
+<script id="model-code">
+"use strict";
+const MODEL = Object.freeze({shares:527,netDebt:2741,adjustments:418,referencePrice:24.06,reportBase:27.77,target:24.70});
+const PRESETS = Object.freeze({bear:{revenue:9500,margin:15,multiple:7},base:{revenue:10300,margin:18.4,multiple:9.4},bull:{revenue:11000,margin:21,multiple:10}});
+const LIMITS = Object.freeze({revenue:{min:8000,max:13000,step:100,digits:0,unit:"M€"},margin:{min:10,max:25,step:0.1,digits:1,unit:"%"},multiple:{min:5,max:13,step:0.1,digits:1,unit:"×"}});
+function calculate(s){const ebitda=s.revenue*s.margin/100;const ev=ebitda*s.multiple;const equity=ev-MODEL.netDebt-MODEL.adjustments;const value=equity/MODEL.shares;return{ebitda,ev,equity,value,upside:(value/MODEL.referencePrice-1)*100};}
+function decompose(s){const b=PRESETS.base;const stages=[calculate(b).value,calculate({...b,revenue:s.revenue}).value,calculate({...b,revenue:s.revenue,margin:s.margin}).value,calculate(s).value];const cents=stages.map(x=>Math.round(x*100));return{effects:cents.slice(1).map((x,i)=>(x-cents[i])/100),total:(cents[3]-cents[0])/100};}
+function parseInput(raw){const cleaned=raw.trim().replace(/[\s\u00a0\u202f]/g,"").replace(",",".");return /^\d+(\.\d+)?$/.test(cleaned)?Number(cleaned):NaN;}
+function normalizeInput(value,key){const l=LIMITS[key];return Number((Math.round(value/l.step)*l.step).toFixed(l.digits));}
+</script>
+<script id="ui-code">
+(() => {
+  const $=id=>document.getElementById(id);
+  const keys=["revenue","margin","multiple"];
+  const names={bear:"Heikko",base:"Perus",bull:"Vahva"};
+  let state={...PRESETS.base},active="base",announceTimer;
+  const f=(v,d=2)=>new Intl.NumberFormat("fi-FI",{minimumFractionDigits:d,maximumFractionDigits:d}).format(Object.is(v,-0)?0:v);
+  const signed=(v,d=2)=>(v>0?"+":v<0?"−":"")+f(Math.abs(v),d);
+  const baseResult=calculate(PRESETS.base);
+  const money=v=>f(v)+" €";
+  const setText=(id,text)=>{$(id).textContent=text;};
+  function drawChart(result){
+    const svg=$("comparison-chart");
+    const width=Math.max(245,svg.clientWidth),height=204;
+    const left=67,right=54,top=18,bottom=23;
+    const plotWidth=width-left-right;
+    const maxValue=Math.max(37.82,result.value);
+    const max=Math.ceil(maxValue/10)*10;
+    const x=v=>left+v/max*plotWidth;
+    const rows=[{label:"Heikko",value:12.93,y:28},{label:"Perus",value:27.77,y:67},{label:"Vahva",value:37.82,y:106},{label:active==="custom"?"Oma":"Laskuri",value:result.value,y:151,own:true}];
+    const ticks=width<370?[0,max/2,max]:[0,max/4,max/2,3*max/4,max];
+    const grid=ticks.map(v=>`<line class="guide" x1="${x(v)}" y1="${top}" x2="${x(v)}" y2="${height-bottom}"/><text class="axis-text" text-anchor="middle" x="${x(v)}" y="${height-5}">${f(v,v%1?1:0)}</text>`).join("");
+    const bars=rows.map(r=>`<text x="0" y="${r.y+4}"${r.own?' class="bar-label"':''}>${r.label}</text><rect class="${r.own?"custom-bar":"source-bar"}" x="${left}" y="${r.y-10}" width="${Math.max(0,x(r.value)-left)}" height="20" rx="3"/><text class="bar-label" x="${x(r.value)+7}" y="${r.y+4}">${f(r.value)}</text>`).join("");
+    svg.setAttribute("viewBox",`0 0 ${width} ${height}`);
+    svg.innerHTML=`<title id="chart-title">Laskennallinen osakearvo verrattuna raportin skenaarioihin</title><desc id="chart-description">Raportin heikko 12,93 euroa, perus 27,77 euroa, vahva 37,82 euroa. ${active==="custom"?"Oma skenaario":"Laskurin tulos"} ${f(result.value)} euroa. Kurssi 1.9.2026: 24,06 euroa. Asteikko 0–${max} euroa.</desc>${grid}<line class="price-line" x1="${x(MODEL.referencePrice)}" y1="${top-6}" x2="${x(MODEL.referencePrice)}" y2="${height-bottom}"/>${bars}`;
+  }
+  function render(options={}){
+    const result=calculate(state),effects=decompose(state);
+    keys.forEach(key=>{
+      const l=LIMITS[key],input=$(key),diff=state[key]-PRESETS.base[key];
+      input.value=state[key];input.style.setProperty("--fill",`${(state[key]-l.min)/(l.max-l.min)*100}%`);
+      input.setAttribute("aria-valuetext",`${f(state[key],l.digits)} ${l.unit}`);
+      if(options.keepInput!==key)$(key+"-value").value=f(state[key],l.digits);
+      const text=Math.abs(diff)<0.00001?"Ei muutosta":signed(diff,l.digits)+(key==="margin"?" %-yks.":key==="multiple"?"×":" M€");
+      setText(key+"-diff",text);$(key+"-diff").classList.toggle("lower",diff<-.00001);
+    });
+    document.querySelectorAll("[data-preset]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.preset===active?"true":"false"));
+    $("scenario-label").innerHTML='<span class="state-dot" aria-hidden="true"></span>'+ (active==="custom"?"Oma skenaario · sinun oletuksesi":names[active]+" · raportin oletukset");
+    setText("valuation",f(result.value));setText("mobile-valuation",money(result.value));setText("mobile-upside",signed(result.upside,1)+" %");
+    setText("upside",signed(result.upside,1)+" %");$("upside").classList.toggle("negative",result.upside<0);
+    setText("upside-label",result.upside>=0?"yli raportin päiväyksen kurssin":"alle raportin päiväyksen kurssin");
+    $("rounding-note").innerHTML=active==="base"?'Raportin perusskenaario: 27,77 €. <a href="#assumptions" data-open="assumptions">Miksi pieni ero?</a>':'Vertailukurssi 24,06 € · 1.9.2026. <a href="#assumptions" data-open="assumptions">Näytä laskenta</a>';
+    ["ebitda","ev","equity"].forEach(k=>setText("calc-"+k,f(result[k])+" M€"));setText("calc-value",money(result.value));
+    keys.forEach((key,i)=>{
+      setText("effect-"+key,signed(effects.effects[i])+" €");
+      const bar=$("effect-"+key+"-bar"),max=Math.max(1,...effects.effects.map(Math.abs)),size=Math.abs(effects.effects[i])/max*48;
+      bar.style.width=size+"%";bar.style.left=(effects.effects[i]>=0?50:50-size)+"%";bar.classList.toggle("negative",effects.effects[i]<0);
+    });
+    setText("effect-total",signed(effects.total)+" €");
+    const changed=keys.filter(k=>Math.abs(state[k]-PRESETS.base[k])>1e-8);
+    if(!changed.length){$("explanation-text").innerHTML='Oletukset ovat raportin perusskenaarion tasolla. <strong>Muuta yhtä oletusta</strong>, niin näet sen vaikutuksen euroina osaketta kohden.';}
+    else{
+      const labels=["Liikevaihdon muutos","Kannattavuuden muutos","Arvostuskertoimen muutos"];
+      const dominant=effects.effects.reduce((best,v,i)=>Math.abs(v)>Math.abs(effects.effects[best])?i:best,0);
+      const v=effects.effects[dominant];
+      const lead=effects.total===0?"Muutokset kumoavat toisensa sentin tarkkuudella.":`Arvo on <strong>${f(Math.abs(effects.total))} € ${effects.total>0?"korkeampi":"matalampi"}</strong> kuin mallin perusskenaariossa.`;
+      const tail=` ${labels[dominant]} ${v>=0?"nostaa":"laskee"} arvoa ${f(Math.abs(v))} €${changed.length>1?" ja on suurin yksittäinen vaikutus tässä erittelyssä":""}.`;
+      $("explanation-text").innerHTML=lead+tail;
+    }
+    drawChart(result);
+    if(options.announce){clearTimeout(announceTimer);announceTimer=setTimeout(()=>{setText("announcer",`${active==="custom"?"Oma skenaario":names[active]+" skenaario"}. Laskennallinen arvo ${f(result.value)} euroa. Ero raportin päiväyksen kurssiin ${signed(result.upside,1)} prosenttia.`);},180);}
+  }
+  function clearErrors(){keys.forEach(k=>{$(k+"-error").textContent="";$(k+"-value").removeAttribute("aria-invalid");});}
+  function choosePreset(key){active=key;state={...PRESETS[key]};clearErrors();render({announce:true});}
+  document.querySelectorAll("[data-preset]").forEach(button=>button.addEventListener("click",()=>choosePreset(button.dataset.preset)));
+  $("reset").addEventListener("click",()=>choosePreset("base"));
+  keys.forEach(key=>{
+    $(key).addEventListener("input",e=>{state[key]=Number(e.target.value);active="custom";$(key+"-error").textContent="";$(key+"-value").removeAttribute("aria-invalid");render({announce:true});});
+    const field=$(key+"-value");
+    function commit(final){
+      const value=parseInput(field.value),l=LIMITS[key];
+      if(!Number.isFinite(value)||value<l.min||value>l.max){if(final){setText(key+"-error",`Syötä luku väliltä ${f(l.min,l.digits)}–${f(l.max,l.digits)} ${l.unit}. Laskuri käyttää viimeistä kelvollista arvoa.`);field.setAttribute("aria-invalid","true");}return;}
+      field.removeAttribute("aria-invalid");setText(key+"-error","");
+      const normalized=normalizeInput(value,key);
+      if(Math.abs(state[key]-normalized)>1e-8){state[key]=normalized;active="custom";}
+      render({keepInput:final?null:key,announce:true});
+    }
+    field.addEventListener("input",()=>commit(false));
+    field.addEventListener("blur",()=>commit(true));
+    field.addEventListener("keydown",e=>{if(e.key==="Enter"){commit(true);field.blur();}if(e.key==="Escape"){field.value=f(state[key],LIMITS[key].digits);field.removeAttribute("aria-invalid");setText(key+"-error","");field.blur();}});
+  });
+  document.addEventListener("click",event=>{const link=event.target.closest("[data-open]");if(link){const detail=$(link.dataset.open);if(detail)detail.open=true;}});
+  setText("base-value",money(baseResult.value));setText("base-value-detail",money(baseResult.value));
+  Object.keys(PRESETS).forEach(k=>setText("source-"+k+"-model",money(calculate(PRESETS[k]).value)));
+  render();
+  if(document.modelContext?.registerTool){
+    const lifecycle=new AbortController();
+    try{Promise.resolve(document.modelContext.registerTool({
+      name:"configure_upm_scenario",title:"Muuta UPM-skenaarion oletukset",
+      description:"Päivittää tämän paikallisen skenaariolaskurin kolme näkyvää oletusta. Ei lähetä tietoja eikä muuta alkuperäistä raporttia. Palauttaa laskennallisen arvon, ei tavoitehintaa.",
+      inputSchema:{type:"object",properties:{revenue:{type:"number",minimum:8000,maximum:13000,description:"Liikevaihto miljoonaa euroa, pyöristetään 100 M€ tarkkuuteen"},margin:{type:"number",minimum:10,maximum:25,description:"EBITDA-marginaali prosenttia, pyöristetään 0,1 prosenttiyksikköön"},multiple:{type:"number",minimum:5,maximum:13,description:"EV/EBITDA-kerroin, pyöristetään 0,1 tarkkuuteen"}},required:keys,additionalProperties:false},
+      annotations:{readOnlyHint:false,untrustedContentHint:false},
+      execute(input){
+        if(!input||typeof input!=="object"||Array.isArray(input)||Object.keys(input).length!==3||keys.some(k=>typeof input[k]!=="number"||!Number.isFinite(input[k])||input[k]<LIMITS[k].min||input[k]>LIMITS[k].max))throw new Error("Anna kaikki kolme oletusta sallittujen rajojen sisällä.");
+        const next=Object.fromEntries(keys.map(k=>[k,normalizeInput(input[k],k)]));
+        state=next;active="custom";clearErrors();render({announce:true});
+        const result=calculate(state);return{scenario:{...state},valuePerShare:Number(result.value.toFixed(2)),differencePercent:Number(result.upside.toFixed(1)),referencePrice:24.06,reportDate:"2026-09-01",currency:"EUR",isOfficialTargetPrice:false};
+      }
+    },{signal:lifecycle.signal})).catch(()=>{});}catch(_error){/* The calculator works without optional browser agent support. */}
+    window.addEventListener("pagehide",()=>lifecycle.abort(),{once:true});
+  }
+  if(typeof ResizeObserver!=="undefined"){new ResizeObserver(()=>drawChart(calculate(state))).observe($("comparison-chart"));}else{window.addEventListener("resize",()=>drawChart(calculate(state)));}
+})();
+</script>
+</body>
+</html>
+
+
